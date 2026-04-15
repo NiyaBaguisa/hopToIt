@@ -2,7 +2,7 @@ function Task(props){
 
     const task = {
         name: props.name,
-        desc: props.desc,
+        
         id: props.id,
         priority: props.priority,
         category: props.category,
@@ -16,10 +16,9 @@ function Task(props){
     return(
         <div className="task">
             <h3>{task.name}</h3>
-            <p>{task.desc}</p>
-            <div className="category-tag">
-                <p>{task.category}</p>
-            </div>
+            <div className="category-tag" style={{backgroundColor: task.category.color}}>
+                <p>{task.category.value}</p>
+            </div>            
             <button style={{display: task.done ? 'none' : 'inline-block'}}
             onClick={()=> props.onComplete(task)} >Complete</button>
 

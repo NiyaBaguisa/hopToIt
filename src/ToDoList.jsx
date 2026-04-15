@@ -5,21 +5,29 @@ import Task from "./Task";
 function ToDoList(){
         //priority types, hide done from priority list
     const priorityList = ["Low Priority", "Medium Priority", "High Priority"];
+    //default category list
+    const [categoryList, setCategoryList] = useState([{value:"Work", color:"#000000"}, 
+                                                    {value:"Hobby", color:"#D1AE00"}, 
+                                                    {value:"Learning", color:"#0011D1"}]);
     //list sections
     const [lowList, setLowList] = useState([]);
     const [medList, setMedList] = useState([]);
     const [highList, setHighList] = useState([]);
     const [doneList, setDoneList] = useState([]);
 
-    function handleChildData(newTask){
+// 0: newtask 1: {newcatval, color}
+    function handleChildData(newArr){
+        //add newcaat to category list
+        if(newArr[1]?.value&& !categoryList.some(c=> c.value.trim().toLowerCase() === newArr[1].value.trim().toLowerCase())){
+            setCategoryList([...categoryList,newArr[1]])};
         //if task is not done, sort it in the columns
-      if (newTask.done == false){
-        if(newTask.priority === "Low Priority"){
-         setLowList([newTask,...lowList]);
-        }else if(newTask.priority === "Medium Priority"){
-            setMedList([newTask,...medList])
-        }else if(newTask.priority === "High Priority"){
-            setHighList([newTask,...highList])
+      if (newArr[0].done === false){
+        if(newArr[0].priority === "Low Priority"){
+         setLowList([newArr[0],...lowList]);
+        }else if(newArr[0].priority === "Medium Priority"){
+            setMedList([newArr[0],...medList])
+        }else if(newArr[0].priority === "High Priority"){
+            setHighList([newArr[0],...highList])
         }      
     }
 }
@@ -60,7 +68,8 @@ function ToDoList(){
         <div className="left-section">
             <NewTaskBar
             sendData={handleChildData}
-            priorityList ={priorityList}/>
+            priorityList ={priorityList}
+            categoryList ={categoryList}/>
        
          <div className="list-section">
             <div className="p-container">

@@ -2,7 +2,7 @@
   --primary-color: #526f1f;
   --secondary-color: #0B281C;
   --primary-text-color: white;
-  --secondary-text-color: #A0FEAD;
+  --secondary-text-color: #cae6cc;
   
 }
 
@@ -26,17 +26,13 @@ background: linear-gradient(0deg,rgba(11, 40, 28, 1) 0%, rgba(82, 111, 31, 1) 83
   
 }
 .taskbar-container{
-  background-color: blue;
+  
   height: 5vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-label{
-  height: 100%;
-width: 70%;
- 
-}
+
 .task-input{
   height: 85%;
   width: 100%;
@@ -60,10 +56,15 @@ width: 70%;
   flex-direction: column;
  align-items: center;
   height: 90%;
-  
-  
-  
+   
   }
+
+  ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
 
   .task{
     border-radius: 1rem;
@@ -96,4 +97,11 @@ width: 70%;
     border-right-color: rgba(255, 255, 255, 0.1);
   }
 
+.category-tag{
+   width: fit-content;
+  height: auto;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  border-radius: 1rem;
+}
 
