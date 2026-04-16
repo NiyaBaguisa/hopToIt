@@ -3,6 +3,7 @@
   --secondary-color: #0B281C;
   --primary-text-color: white;
   --secondary-text-color: #cae6cc;
+  --blue-i-enjoy: rgba(155, 221, 240, 1);
   
 }
 
@@ -16,8 +17,12 @@ body{
  grid-template-columns: 3fr 1fr;
  width: 100vw;
  background: #0B281C;
-background: linear-gradient(0deg,rgba(11, 40, 28, 1) 0%, rgba(82, 111, 31, 1) 83%);
- 
+/*background: linear-gradient(0deg,rgba(11, 40, 28, 1) 0%, rgba(82, 111, 31, 1) 83%);
+ */
+ background-image: radial-gradient(circle farthest-corner at top left, var(--secondary-color) 0%, rgba(225, 243, 97, 0) 50%),
+        radial-gradient(circle farthest-corner at bottom right, var(--secondary-color) 0%, rgba(204, 104, 119, 0) 33%),
+    radial-gradient(circle farthest-corner at top right, var(--primary-color) 0%, rgba(155, 221, 240, 0) 50%),
+    radial-gradient(ellipse at bottom center, rgba(225, 243, 97, 1) 0%, rgba(254, 43, 0, 0) 80%);
 }
 .left-section{
   display: flex;
