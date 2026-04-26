@@ -1,29 +1,62 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import NewTaskBar from "./NewTaskBar";
 import Task from "./Task";
 
 function ToDoList() {
     //priority types, hide done from priority list
     const priorityList = ["Low Priority", "Medium Priority", "High Priority"];
-    //default category list
-    const [categoryList, setCategoryList] = useState([{ value: "Work", color: "#000000" },
-    { value: "Hobby", color: "#D1AE00" },
-    { value: "Learning", color: "#0011D1" }]);
+    //set category list to the local storage one otherwise if there is nothing in storage set it to the default
+   const [categoryList, setCategoryList] = useState(() => {
+    const saved = localStorage.getItem('categoryList');
+    return saved ? JSON.parse(saved) : [
+        { value: "Work", color: "#000000" },
+        { value: "Hobby", color: "#D1AE00" },
+        { value: "Learning", color: "#0011D1" }
+    ];
+});
     //list sections
     const [lowList, setLowList] = useState([]);
-   
     const [medList, setMedList] = useState([]);
     const [highList, setHighList] = useState([]);
     const [doneList, setDoneList] = useState([]);
 
     // filter state
     const [selectedFilters, setSelectedFilters] = useState({});
+    //inital load data, if nothing is stored yet load empty array
+useEffect(() => {
+    const low = JSON.parse(localStorage.getItem('lowList')) || [];
+    const med = JSON.parse(localStorage.getItem('medList')) || [];
+    const high = JSON.parse(localStorage.getItem('highList')) || [];
+  
+    setLowList(low);
+    setMedList(med);
+    setHighList(high);
+    
+}, []);
+//store low med high and category lists in local storage when the lists change
+useEffect(() => {
+    localStorage.setItem('lowList', JSON.stringify(lowList));
+}, [lowList]);
+
+useEffect(() => {
+    localStorage.setItem('medList', JSON.stringify(medList));
+}, [medList]);
+
+useEffect(() => {
+    localStorage.setItem('highList', JSON.stringify(highList));
+}, [highList]);
+
+useEffect(() => {
+    localStorage.setItem('categoryList', JSON.stringify(categoryList));
+}, [categoryList]);
+
 
     // 0: newtask 1: {newcatval, color}
     function handleChildData(newArr) {
         //add newcaat to category list
         if (newArr[1]?.value && !categoryList.some(c => c.value.trim().toLowerCase() === newArr[1].value.trim().toLowerCase())) {
             setCategoryList([...categoryList, newArr[1]])
+          
         };
         //if task is not done, sort it in the columns
         if (newArr[0].done === false) {

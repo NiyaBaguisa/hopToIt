@@ -4,6 +4,9 @@
   --primary-text-color: white;
   --secondary-text-color: #cae6cc;
   --blue-i-enjoy: rgba(155, 221, 240, 1);
+  --pixel-size: 2;
+  --frame-amt: 16;
+  --sheet-width: 2624px;
   
 }
 
@@ -110,3 +113,26 @@ body{
   border-radius: 1rem;
 }
 
+.frog{
+  width: calc(128px * var(--pixel-size));
+  height: calc(128px * var(--pixel-size));
+  
+  overflow: hidden;
+ 
+}
+.pixelart{
+  image-rendering: pixelated;;
+}
+
+.spriteSheet{
+  animation: moveSpriteSheet 2s steps(var(--frame-amt)) infinite ;
+width: calc(var(--sheet-width) * var(--pixel-size));
+}
+@keyframes moveSpriteSheet{
+  from{
+    transform: translate3d(0px, 0, 0);
+  }
+  to{
+    transform: translate3d(-100%, 0,0);
+  }
+}

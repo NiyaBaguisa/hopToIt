@@ -8,11 +8,20 @@ function Pomodoro(){
     //[minutes, seconds]
     const[timeText, setTimeText] = useState([0,0]);     
     //true = work false = rest
+    const [sheet, setSheet] =useState("/spritesheets/frogIdleSpritesheet.png")
     const timerRef = useRef(true);
     const timerId = useRef();
     const workTimeRemaining = useRef(0)
     const restTimeRemaining = useRef(0)
     const numberOfPomodoro = useRef(0);
+
+    //switch spritesheets and update frame count
+    function setAnimation(filePath, frames, sheetWidth){
+        setSheet(filePath);
+        document.documentElement.style.setProperty('--frame-amt', frames)
+        document.documentElement.style.setProperty('--sheet-width', sheetWidth)
+        
+    }
 
     //start pomodoro button
     function startPomodoro(){
@@ -31,6 +40,7 @@ function Pomodoro(){
 
             //change the text on screen to match
             updateDisplay(workTimeRemaining.current)
+            setAnimation("/spritesheets/workSpritesheet.png" , 24, '3072px');
             console.log("work",workTimeRemaining.current);
                 if(workTimeRemaining.current <=0){
                    
@@ -43,6 +53,7 @@ function Pomodoro(){
                 restTimeRemaining.current--;
                 //change the text on screen to match
                 updateDisplay(restTimeRemaining.current)
+                setAnimation("/spritesheets/frogRestSpritesheet.png", 12, '1536px');
                 //console.log("rest:", restTimeRemaining.current);
                 if(restTimeRemaining.current <=0){
                    //switch to work time
@@ -68,6 +79,8 @@ function Pomodoro(){
     function pausePomodoro(){
         clearInterval(timerId.current);
         console.log("paused")
+        setAnimation("/spritesheets/frogIdleSpritesheet.png", 16, '2624px')
+        
 
     }
 
@@ -83,7 +96,8 @@ function endPomodoro(){
         numberOfPomodoro.current = 0;
         setWorkTime(0.05);
         setRestTime(0.05);
-        updateDisplay(workTimeRemaining.current)
+        updateDisplay(workTimeRemaining.current);
+        setAnimation("/spritesheets/frogIdleSpritesheet.png", 16, '2624px');
 
         console.log("Session ended");
     
@@ -109,6 +123,12 @@ function updateDisplay(time){
                 <button id="pomodoro-button" onClick={pausePomodoro}>Pause</button>
                 <button id="pomodoro-button" onClick={endPomodoro}>End Pomodoro</button>
             </div>
+            <div className="frog">
+                 <img className="spriteSheet pixelart"src={sheet}/>
+            </div>
+           
+
+          
         </div>
     )
 
