@@ -19,9 +19,11 @@ function ToDoList() {
     const [medList, setMedList] = useState([]);
     const [highList, setHighList] = useState([]);
     const [doneList, setDoneList] = useState([]);
-
     // filter state
     const [selectedFilters, setSelectedFilters] = useState({});
+   //filter div toggle
+   const [isVisible, setIsVisible] = useState(false);
+   
     //inital load data, if nothing is stored yet load empty array
 useEffect(() => {
     const low = JSON.parse(localStorage.getItem('lowList')) || [];
@@ -104,6 +106,8 @@ useEffect(() => {
 
     function showFilters() {
         //display div 
+        setIsVisible(!isVisible);
+
 
     }
     function isFiltered(task) {
@@ -129,17 +133,18 @@ useEffect(() => {
                 sendData={handleChildData}
                 priorityList={priorityList}
                 categoryList={categoryList} />
-            <div>
-                <button onClick={showFilters}>Filter</button>
-                <div>
+            <div className="master-filter-container">
+                <button onClick={showFilters} className="filter-btn">Filter</button>
+                <div className="filter-container"style={{ display: isVisible ? 'flex': 'none'}}>
                     {categoryList.map((c) => (
-                        <label>{c.value}
+                        <label>
                             <input
                             key={c.value}
                                 type="checkbox"
                                 name={c.value}
                                 checked={selectedFilters[c.value] || false}
                                 onChange={handleFilters} />
+                                {c.value}
                         </label>))}
 
                 </div>
@@ -211,7 +216,7 @@ useEffect(() => {
                     </ul>
                 </div>
                 <div className="p-container">
-                    <h1>Done</h1>
+                    <h1 className="done">Done</h1>
                     <ul>
                         {doneList.filter(task => !isFiltered(task)).map((task) => (
                             <li key={task.id}>

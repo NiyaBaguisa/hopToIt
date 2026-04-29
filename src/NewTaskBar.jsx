@@ -14,7 +14,7 @@ function handleInput(text){
     }
 
 function createNewTask(){
-    if(inputText !== ""){
+    if(inputText !== "" && selectedPriority !=="Select Priority"&& selectedPriority !==""){
         const newTask ={
             name: inputText,
             id: Date.now(),
@@ -29,6 +29,8 @@ function createNewTask(){
         setSelectedCategory({value:"", color:""});
         setNewCategory({})
         setSelectedColor("#ffffff")
+    }else{
+        alert("Please enter a task name and a priority");
     }
 }  
 
@@ -70,17 +72,18 @@ function handleColor(event){
 
  return(
         <div className="taskbar-container">
-            <label>
-                <input className="task-input" value={inputText} onChange={handleInput} placeholder="add a new task..."/>
+            <label className="task-label">
+                <input className="task-input" value={inputText} onChange={handleInput} required placeholder="add a new task..."/>
             </label>
-            <button className="addButton" onClick={createNewTask}>Add task</button>
+            <button className="add-button" onClick={createNewTask}>Add task</button>
             
-            <label for="priority">
+            <label calssName="priority-label" for="priority">
                 <select 
                 className="dropdown" 
                 name="priority"
                 value ={selectedPriority}
-                onChange={handleChange}>
+                onChange={handleChange}
+                required>
                     <option>Select Priority</option>
                     {props.priorityList.map((p)=>(
                         <option
@@ -92,13 +95,15 @@ function handleColor(event){
                 </select>
 
             </label>
-            <label for="categoryColor">
-                <input type="color" name="categoryColor" value={selectedColor} onChange={handleColor}/>
+            <div className="cat-master">
+                <label for="categoryColor" className="color-label">
+                <input className="color-input" type="color" name="categoryColor" value={selectedColor} onChange={handleColor}/>
             </label>
 
             
-         <label for="category">
+         <label className="category-label" for="category">
             <input
+            className="category-input"
             list="categories"
             name="category"
             value={selectedCategory.value}
@@ -114,6 +119,9 @@ function handleColor(event){
                         </option>))}
             </datalist>       
               </label>
+
+            </div>
+            
 
                 
 
