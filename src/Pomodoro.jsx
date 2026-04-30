@@ -8,7 +8,7 @@ function Pomodoro(){
     //[minutes, seconds]
     const[timeText, setTimeText] = useState([0,0]);     
     //true = work false = rest
-    const [sheet, setSheet] =useState("/spritesheets/frogIdleSpritesheet.png")
+    const [sheet, setSheet] =useState("./spritesheets/frogIdleSpritesheet.png")
     const timerRef = useRef(true);
     const timerId = useRef();
     const workTimeRemaining = useRef(0)
@@ -41,7 +41,7 @@ function Pomodoro(){
             workTimeRemaining.current--;
             //change the text on screen to match
             updateDisplay(workTimeRemaining.current)
-            setAnimation("/spritesheets/workSpritesheet.png" , 24, '3072px');
+            setAnimation("./spritesheets/workSpritesheet.png" , 24, '3072px');
             
             console.log("work",workTimeRemaining.current);
                 if(workTimeRemaining.current <=0){
@@ -57,7 +57,7 @@ function Pomodoro(){
                 restTimeRemaining.current--;
                 //change the text on screen to match
                 updateDisplay(restTimeRemaining.current)
-                setAnimation("/spritesheets/frogRestSpritesheet.png", 12, '1536px');
+                setAnimation("./spritesheets/frogRestSpritesheet.png", 12, '1536px');
                
                 //console.log("rest:", restTimeRemaining.current);
                 if(restTimeRemaining.current <=0){
@@ -87,7 +87,7 @@ function Pomodoro(){
     function pausePomodoro(){
         clearInterval(timerId.current);
         console.log("paused")
-        setAnimation("/spritesheets/frogIdleSpritesheet.png", 16, '2624px')
+        setAnimation("./spritesheets/frogIdleSpritesheet.png", 16, '2624px')
          console.log(Notification.permission)
         
 
@@ -106,7 +106,7 @@ function endPomodoro(){
         setWorkTime(0.05);
         setRestTime(0.05);
         updateDisplay(workTimeRemaining.current);
-        setAnimation("/spritesheets/frogIdleSpritesheet.png", 16, '2624px');
+        setAnimation("./spritesheets/frogIdleSpritesheet.png", 16, '2624px');
 
         console.log("Session ended");
        
