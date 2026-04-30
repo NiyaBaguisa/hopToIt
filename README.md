@@ -6,8 +6,7 @@ The motivation behind this project was to practice using CRUD principles, as wel
 
 - [Overview](#overview)
   - [Functional Requirements](#functional-requirements)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
+   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
@@ -38,15 +37,10 @@ Users should be able to:
 - See hover states for all interactive elements on the page
 
 
-### Screenshot
-
-![](./screenshot.jpg)
-
-
 ### Links
 
-- Github URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- [Github URL](https://github.com/NiyaBaguisa/hopToIt/tree/main)
+- [Live Site URL](https://niyabaguisa.github.io/hopToIt/)
 
 ## My process
 

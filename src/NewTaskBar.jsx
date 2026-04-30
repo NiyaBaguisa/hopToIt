@@ -77,7 +77,7 @@ function handleColor(event){
             </label>
             <button className="add-button" onClick={createNewTask}>Add task</button>
             
-            <label calssName="priority-label" for="priority">
+            <label className="priority-label" for="priority">
                 <select 
                 className="dropdown" 
                 name="priority"
