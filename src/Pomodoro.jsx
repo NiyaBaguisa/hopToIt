@@ -103,8 +103,8 @@ function endPomodoro(){
         workTimeRemaining.current = 0;
         restTimeRemaining.current = 0;
         numberOfPomodoro.current = 0;
-        setWorkTime(0.05);
-        setRestTime(0.05);
+        setWorkTime(25);
+        setRestTime(5);
         updateDisplay(workTimeRemaining.current);
         setAnimation("./spritesheets/frogIdleSpritesheet.png", 16, '2624px');
 
