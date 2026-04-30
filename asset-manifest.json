@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/hopToIt/static/css/main.ad916797.css",
-    "main.js": "/hopToIt/static/js/main.68311914.js",
+    "main.js": "/hopToIt/static/js/main.3e617501.js",
     "static/js/453.993a9119.chunk.js": "/hopToIt/static/js/453.993a9119.chunk.js",
     "index.html": "/hopToIt/index.html",
     "main.ad916797.css.map": "/hopToIt/static/css/main.ad916797.css.map",
-    "main.68311914.js.map": "/hopToIt/static/js/main.68311914.js.map",
+    "main.3e617501.js.map": "/hopToIt/static/js/main.3e617501.js.map",
     "453.993a9119.chunk.js.map": "/hopToIt/static/js/453.993a9119.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ad916797.css",
-    "static/js/main.68311914.js"
+    "static/js/main.3e617501.js"
   ]
 }
