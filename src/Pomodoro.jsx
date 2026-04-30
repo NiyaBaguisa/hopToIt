@@ -3,7 +3,7 @@ function Pomodoro(){
 
     //auto work time and rest time transition
   
-    const[workTime, setWorkTime] = useState(0.1) //25 minutes
+    const[workTime, setWorkTime] = useState(25) //25 minutes
     const[restTime, setRestTime] = useState(5) // 5 minutes
     //[minutes, seconds]
     const[timeText, setTimeText] = useState([0,0]);     
