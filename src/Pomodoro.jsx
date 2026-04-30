@@ -3,7 +3,7 @@ function Pomodoro(){
 
     //auto work time and rest time transition
   
-    const[workTime, setWorkTime] = useState(25) //25 minutes
+    const[workTime, setWorkTime] = useState(0.1) //25 minutes
     const[restTime, setRestTime] = useState(5) // 5 minutes
     //[minutes, seconds]
     const[timeText, setTimeText] = useState([0,0]);     
@@ -51,7 +51,7 @@ function Pomodoro(){
                     timerRef.current =false;
                     //reset work time
                     workTimeRemaining.current = workTime*60;
-                    notify(textOptions[0]);
+                    notifyUser(textOptions[0]);
                 }
             }else{
                 restTimeRemaining.current--;
@@ -67,7 +67,7 @@ function Pomodoro(){
                     timerRef.current=true;
                     //reset rest time
                     restTimeRemaining.current = restTime*60;
-                    notify(textOptions[1]);
+                    notifyUser(textOptions[1]);
                      numberOfPomodoro.current++;
                     // console.log(numberOfPomodoro.current)
                      //after 4 consecutive pomodoros, take a longer break of 15 minutes
@@ -122,17 +122,17 @@ function updateDisplay(time){
 
 }
 
-//function notifyUser(t){
+function notifyUser(t){
     if("Notification" in window){
         // do i have permission to send notifications
         if(Notification.permission === "granted"){
-           // notify(t);
+            notify(t);
             // ask for permission if not
         }else{
             //handle async sucess and failure
             Notification.requestPermission().then((result)=>{
                 if(result === "granted"){
-                //    notify(t);
+                 notify(t);
                 }else if (result ==="denied"){
                     console.log("permission denied")
                     //user has not yet granted access
@@ -147,27 +147,18 @@ function updateDisplay(time){
         console.error("Notification not supported")
     }
 
-//}
+}
     //check if browser supports notification api
 
     
 
     function notify(t){
-             
-        //when work time is over
-        if (workTimeRemaining.current <=0){
-            new Notification("Hop To It Pomodoro",{
-            body:t,
-            icon:"/hopToItIcon.png"
-        });
-// when rest time is over
-        }else if(restTimeRemaining.current<=0){
+           
             new Notification("Hop To It Pomodoro",{
             body:t,
             icon:"/hopToItIcon.png"
         });
 
-        }
        
     }
     return(
